@@ -36,7 +36,7 @@
       display: inline-block;
       width: auto;
       max-width: 100%;
-      max-height: calc(100vh - 60px); /* 1画面に収まる上限高さ */
+      max-height: calc(100vh - 60px);
       border-radius: 12px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.4);
       overflow: hidden;
@@ -51,33 +51,35 @@
       object-fit: contain;
     }
 
-    /* 天気カード（重なりを防ぐコンパクトサイズ） */
+    /* 天気カード（幅を狭く・縦の余白を増やして少し細長く調整） */
     .weather-card {
       position: absolute;
       transform: translate(-50%, -50%);
       background: rgba(255, 255, 255, 0.94);
-      padding: 3px 6px;
+      padding: 5px 3px; /* 上下の余白を広げ、左右を小さく */
       border-radius: 6px;
       text-align: center;
       box-shadow: 0 3px 6px rgba(0,0,0,0.3);
       border: 1px solid #d0d0d0;
-      min-width: 48px;
+      width: 38px; /* 幅を固定してすっきりした縦長に */
       z-index: 10;
     }
     .city-name {
       font-size: 0.65rem;
       font-weight: bold;
       color: #333;
-      margin-bottom: 1px;
+      margin-bottom: 2px;
     }
     .weather-icon {
       font-size: 1.1rem;
       line-height: 1;
+      margin: 1px 0;
     }
     .temp {
       font-size: 0.6rem;
       font-weight: bold;
       color: #e53e3e;
+      margin-top: 2px;
     }
   </style>
 </head>
@@ -91,7 +93,6 @@
   </div>
 
   <script>
-    // カード同士が被らないよう隣接都市の座標を少し引き離して微調整
     const weatherData = [
       { city: "札幌", icon: "☁️", temp: "22℃", x: 60, y: 16 },
       { city: "仙台", icon: "🌤️", temp: "26℃", x: 65, y: 46 },
