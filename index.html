@@ -1,20 +1,129 @@
-<HTML>
-　<HEAD>
-　　<TITLE>
-　　　　タイトル 
-　　</TITLE>
-　</HEAD>
-<BODY>
-<P>
-<FONT color="red" size="+1">
-ひとつめの段落です．まだひとつめの段落です．ひきつづきひとつめの段落です．
-</FONT>
-</P>
-<P>
-<FONT color="blue" size="+3">
-ふたつめの段落です．まだふたつめの段落です．<BR>ひきつづきふたつめの段落です．
-</FONT>
-</P>
-</BODY>
-</HTML>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全国お天気マップ</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100vh;
+      overflow: hidden;
+    }
+    body {
+      font-family: sans-serif;
+      background-color: #0b132b;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+    .header-title {
+      font-size: 1.2rem;
+      color: #ffffff;
+      margin-bottom: 8px;
+      text-align: center;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* 地図画像にピッタリ密着するレスポンシブコンテナ */
+    .map-container {
+      position: relative;
+      width: 100%;
+      max-width: 580px;
+      /* 縦の黒い余白が出ないよう画像のアスペクト比にフィット */
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      overflow: hidden;
+      border: 2px solid #334155;
+      display: flex;
+    }
+    
+    .japan-map {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* 天気カード（少しコンパクトにして重なりを防止） */
+    .weather-card {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.94);
+      padding: 3px 6px;
+      border-radius: 6px;
+      text-align: center;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+      border: 1px solid #d0d0d0;
+      min-width: 52px;
+      z-index: 10;
+    }
+    .city-name {
+      font-size: 0.7rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 1px;
+    }
+    .weather-icon {
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    .temp {
+      font-size: 0.65rem;
+      font-weight: bold;
+      color: #e53e3e;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-title">☀️ 全国のお天気</div>
+
+  <div class="map-container">
+    <img class="japan-map" src="全国地図.jpg" alt="日本地図">
+    <div id="map-content"></div>
+  </div>
+
+  <script>
+    // 天気カード同士が重ならないよう座標を分散＆那覇の位置を修正
+    const weatherData = [
+      { city: "札幌", icon: "☁️", temp: "22℃", x: 60, y: 16 },
+      { city: "仙台", icon: "🌤️", temp: "26℃", x: 63, y: 50 },
+      { city: "新潟", icon: "☔", temp: "25℃", x: 50, y: 45 },
+      { city: "金沢", icon: "☔", temp: "25℃", x: 40, y: 55 },
+      { city: "東京", icon: "☀️", temp: "31℃", x: 55, y: 70 },
+      { city: "名古屋", icon: "☀️", temp: "32℃", x: 45, y: 80 },
+      { city: "大阪", icon: "🌤️", temp: "30℃", x: 35, y: 75 },
+      { city: "広島", icon: "☀️", temp: "31℃", x: 25, y: 70 },
+      { city: "福岡", icon: "🌧️", temp: "28℃", x: 10, y: 75 },
+      { city: "鹿児島", icon: "⚡", temp: "29℃", x: 15, y: 92 },
+      { city: "那覇", icon: "☀️", temp: "33℃", x: 70, y: 92 } /* 那覇の位置を南西（左下）寄りに配置 */
+    ];
+
+    const mapContent = document.getElementById("map-content");
+
+    weatherData.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "weather-card";
+      card.style.left = item.x + "%";
+      card.style.top = item.y + "%";
+
+      card.innerHTML = `
+        <div class="city-name">${item.city}</div>
+        <div class="weather-icon">${item.icon}</div>
+        <div class="temp">${item.temp}</div>
+      `;
+
+      mapContent.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
 
