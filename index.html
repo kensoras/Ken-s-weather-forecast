@@ -10,35 +10,34 @@
     }
     html, body {
       height: 100vh;
-      overflow: hidden; /* 1画面固定でスクロール防止 */
+      overflow: hidden; /* スクロール禁止で1画面表示 */
     }
     body {
-      font-family: sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       background-color: #0b132b;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 10px;
+      justify-content: flex-start; /* 上詰めで広々表示 */
+      padding: 10px 5px;
     }
     .header-title {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: #ffffff;
-      margin-bottom: 8px;
+      margin: 5px 0 10px 0;
       text-align: center;
       font-weight: bold;
       flex-shrink: 0;
     }
 
-    /* 画像と枠の縦横比を100%完全一致させるコンテナ */
+    /* 地図コンテナ：スマホ画面の横幅いっぱいに拡大 */
     .map-container {
       position: relative;
       display: inline-block;
-      width: auto;
-      max-width: 100%;
-      max-height: calc(100vh - 60px);
+      width: 100%;
+      max-width: 500px;
       border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
       overflow: hidden;
       border: 2px solid #334155;
     }
@@ -47,38 +46,38 @@
       display: block;
       width: 100%;
       height: auto;
-      max-height: calc(100vh - 60px);
       object-fit: contain;
     }
 
-    /* 天気カード（幅を狭く・縦の余白を増やして少し細長く調整） */
+    /* 天気カード：超スリム＆スタイリッシュな縦長デザイン */
     .weather-card {
       position: absolute;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.94);
-      padding: 5px 3px; /* 上下の余白を広げ、左右を小さく */
+      background: rgba(255, 255, 255, 0.95);
+      padding: 3px 2px;
       border-radius: 6px;
       text-align: center;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-      border: 1px solid #d0d0d0;
-      width: 38px; /* 幅を固定してすっきりした縦長に */
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+      border: 1px solid #dcdcdc;
+      width: 36px; /* 横幅を限界までスリム化して重なり防止 */
       z-index: 10;
     }
     .city-name {
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       font-weight: bold;
-      color: #333;
+      color: #222;
+      line-height: 1;
       margin-bottom: 2px;
     }
     .weather-icon {
-      font-size: 1.1rem;
+      font-size: 1rem;
       line-height: 1;
-      margin: 1px 0;
     }
     .temp {
-      font-size: 0.6rem;
+      font-size: 0.55rem;
       font-weight: bold;
       color: #e53e3e;
+      line-height: 1;
       margin-top: 2px;
     }
   </style>
@@ -93,18 +92,19 @@
   </div>
 
   <script>
+    // 縦長カードが重ならないよう、日本列島の傾きに沿って座標を再調整
     const weatherData = [
-      { city: "札幌", icon: "☁️", temp: "22℃", x: 60, y: 16 },
-      { city: "仙台", icon: "🌤️", temp: "26℃", x: 65, y: 46 },
-      { city: "新潟", icon: "☔", temp: "25℃", x: 50, y: 40 },
-      { city: "金沢", icon: "☔", temp: "25℃", x: 38, y: 52 },
-      { city: "東京", icon: "☀️", temp: "31℃", x: 60, y: 66 },
-      { city: "名古屋", icon: "☀️", temp: "32℃", x: 48, y: 78 },
-      { city: "大阪", icon: "🌤️", temp: "30℃", x: 35, y: 70 },
-      { city: "広島", icon: "☀️", temp: "31℃", x: 23, y: 64 },
-      { city: "福岡", icon: "🌧️", temp: "28℃", x: 10, y: 72 },
-      { city: "鹿児島", icon: "⚡", temp: "29℃", x: 12, y: 88 },
-      { city: "那覇", icon: "☀️", temp: "33℃", x: 70, y: 92 }
+      { city: "札幌", icon: "☁️", temp: "22℃", x: 62, y: 18 },
+      { city: "仙台", icon: "🌤️", temp: "26℃", x: 66, y: 46 },
+      { city: "新潟", icon: "☔", temp: "25℃", x: 48, y: 38 },
+      { city: "金沢", icon: "☔", temp: "25℃", x: 36, y: 48 },
+      { city: "東京", icon: "☀️", temp: "31℃", x: 60, y: 64 },
+      { city: "名古屋", icon: "☀️", temp: "32℃", x: 47, y: 76 },
+      { city: "大阪", icon: "🌤️", temp: "30℃", x: 35, y: 65 },
+      { city: "広島", icon: "☀️", temp: "31℃", x: 23, y: 56 },
+      { city: "福岡", icon: "🌧️", temp: "28℃", x: 10, y: 62 },
+      { city: "鹿児島", icon: "⚡", temp: "29℃", x: 12, y: 82 },
+      { city: "那覇", icon: "☀️", temp: "33℃", x: 68, y: 86 }
     ];
 
     const mapContent = document.getElementById("map-content");
