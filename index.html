@@ -10,7 +10,7 @@
     }
     html, body {
       height: 100vh;
-      overflow: hidden;
+      overflow: hidden; /* 1画面固定でスクロール防止 */
     }
     body {
       font-family: sans-serif;
@@ -30,28 +30,28 @@
       flex-shrink: 0;
     }
 
-    /* 地図画像にピッタリ密着するレスポンシブコンテナ */
+    /* 画像と枠の縦横比を100%完全一致させるコンテナ */
     .map-container {
       position: relative;
-      width: 100%;
-      max-width: 580px;
-      /* 縦の黒い余白が出ないよう画像のアスペクト比にフィット */
-      height: auto;
+      display: inline-block;
+      width: auto;
+      max-width: 100%;
+      max-height: calc(100vh - 60px); /* 1画面に収まる上限高さ */
       border-radius: 12px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.4);
       overflow: hidden;
       border: 2px solid #334155;
-      display: flex;
     }
     
     .japan-map {
+      display: block;
       width: 100%;
       height: auto;
-      display: block;
+      max-height: calc(100vh - 60px);
       object-fit: contain;
     }
 
-    /* 天気カード（少しコンパクトにして重なりを防止） */
+    /* 天気カード（重なりを防ぐコンパクトサイズ） */
     .weather-card {
       position: absolute;
       transform: translate(-50%, -50%);
@@ -61,11 +61,11 @@
       text-align: center;
       box-shadow: 0 3px 6px rgba(0,0,0,0.3);
       border: 1px solid #d0d0d0;
-      min-width: 52px;
+      min-width: 48px;
       z-index: 10;
     }
     .city-name {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: bold;
       color: #333;
       margin-bottom: 1px;
@@ -75,7 +75,7 @@
       line-height: 1;
     }
     .temp {
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       font-weight: bold;
       color: #e53e3e;
     }
@@ -86,24 +86,24 @@
   <div class="header-title">☀️ 全国のお天気</div>
 
   <div class="map-container">
-    <img class="japan-map" src="map.jpg">
+    <img class="japan-map" src="map.jpg" alt="日本地図">
     <div id="map-content"></div>
   </div>
 
   <script>
-    // 天気カード同士が重ならないよう座標を分散＆那覇の位置を修正
+    // カード同士が被らないよう隣接都市の座標を少し引き離して微調整
     const weatherData = [
       { city: "札幌", icon: "☁️", temp: "22℃", x: 60, y: 16 },
-      { city: "仙台", icon: "🌤️", temp: "26℃", x: 63, y: 50 },
-      { city: "新潟", icon: "☔", temp: "25℃", x: 50, y: 45 },
-      { city: "金沢", icon: "☔", temp: "25℃", x: 40, y: 55 },
-      { city: "東京", icon: "☀️", temp: "31℃", x: 55, y: 70 },
-      { city: "名古屋", icon: "☀️", temp: "32℃", x: 45, y: 80 },
-      { city: "大阪", icon: "🌤️", temp: "30℃", x: 35, y: 75 },
-      { city: "広島", icon: "☀️", temp: "31℃", x: 25, y: 70 },
-      { city: "福岡", icon: "🌧️", temp: "28℃", x: 10, y: 75 },
-      { city: "鹿児島", icon: "⚡", temp: "29℃", x: 15, y: 92 },
-      { city: "那覇", icon: "☀️", temp: "33℃", x: 70, y: 92 } /* 那覇の位置を南西（左下）寄りに配置 */
+      { city: "仙台", icon: "🌤️", temp: "26℃", x: 65, y: 46 },
+      { city: "新潟", icon: "☔", temp: "25℃", x: 50, y: 40 },
+      { city: "金沢", icon: "☔", temp: "25℃", x: 38, y: 52 },
+      { city: "東京", icon: "☀️", temp: "31℃", x: 60, y: 66 },
+      { city: "名古屋", icon: "☀️", temp: "32℃", x: 48, y: 78 },
+      { city: "大阪", icon: "🌤️", temp: "30℃", x: 35, y: 70 },
+      { city: "広島", icon: "☀️", temp: "31℃", x: 23, y: 64 },
+      { city: "福岡", icon: "🌧️", temp: "28℃", x: 10, y: 72 },
+      { city: "鹿児島", icon: "⚡", temp: "29℃", x: 12, y: 88 },
+      { city: "那覇", icon: "☀️", temp: "33℃", x: 70, y: 92 }
     ];
 
     const mapContent = document.getElementById("map-content");
