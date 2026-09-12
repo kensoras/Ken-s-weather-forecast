@@ -13,52 +13,29 @@
       background-color: #e0f2fe;
       color: #1e293b;
       padding: 20px 15px;
-      font-size: 1.15rem; /* 全体の文字サイズを大きめに */
-      line-height: 1.8;   /* 行間を広げて読みやすく */
+      font-size: 1.15rem;
+      line-height: 1.8;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* 全体を中央寄せ */
     }
 
-    /* 表（テーブル）全体のスタイル */
-    .weather-table {
+    /* ★画像のサイズ調整スタイルを追加 */
+    .clothes-img {
       width: 100%;
-      max-width: 600px;
-      margin: 0 auto 20px auto;
-      border-collapse: collapse;
-      background-color: #ffffff;
-      border-radius: 10px;
-      overflow: hidden;
+      max-width: 500px; /* 適切な大きさに制限（お好みで400px〜600pxに変更可能） */
+      height: auto;     /* 縦横比を崩さない */
+      border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      font-size: 1.1rem; /* テーブル内の文字を大きく */
-    }
-
-    /* ヘッダー（見出し） */
-    .weather-table th {
-      background-color: #4169e1; /* royalblue */
-      color: #ffffff;
-      padding: 12px 8px;
-      font-size: 1.25rem;
-      text-align: center;
-    }
-
-    /* セルのスタイル */
-    .weather-table td {
-      border: 1px solid #cbd5e1;
-      padding: 12px 10px;
-      text-align: center;
-      vertical-align: middle;
-    }
-
-    /* 左側の項目名セル */
-    .weather-table td:first-child {
-      font-weight: bold;
-      background-color: #f8fafc;
-      width: 25%;
+      margin-bottom: 20px;
+      display: block;
     }
 
     /* 解説文章部分 */
     .description {
-      max-width: 600px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.8);
+      max-width: 500px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
       padding: 15px 20px;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -68,7 +45,7 @@
     /* 戻るボタン */
     .back-btn-container {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 10px;
     }
     .back-btn {
       display: inline-block;
@@ -90,11 +67,13 @@
 </head>
 <body>
 
-<IMG src = "sorahuku1.jpg">
+  <!-- ★ class="clothes-img" を追加してサイズを自動調整 -->
+  <img class="clothes-img" src="sorahuku1.jpg" alt="服装の目安">
 
-<BR><BR>明日は朝晩は少しひんやりとして薄手の羽織るもの一枚あると良いでしょう。
-<BR>日中は広く25℃以上で暑くなるため、半袖になれる装いでお出かけください。
-<BR>
+  <div class="description">
+    明日は朝晩は少しひんやりとして薄手の羽織るもの一枚あると良いでしょう。<br>
+    日中は広く25℃以上で暑くなるため、半袖になれる装いでお出かけください。
+  </div>
 
   <div class="back-btn-container">
     <a href="kanto weather forecast.html" class="back-btn">← 戻る</a>
