@@ -9,28 +9,38 @@
       padding: 0;
     }
     html, body {
-      height: 100vh;
-      overflow-y: auto; /* 下部に解説テキストがあるためスクロール可能に調整 */
+      min-height: 100vh;
+      overflow-y: auto;
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background-color: #e0f2fe;
+      background-color: #e0f2fe; /* 明るい水色背景 */
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start; /* 上詰めで広々表示 */
-      padding: 10px 5px;
+      justify-content: flex-start;
+      padding: 15px 10px;
+      color: #1e293b;
+    }
+
+    /* ★タイトル部分（白い文字から濃い青色に変更して見やすく） */
+    .app-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #0284c7; /* 見やすい鮮やかな青 */
+      text-align: center;
+      margin-top: 4px;
     }
     .header-title {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       color: #0f172a;
-      margin: 5px 0 10px 0;
+      margin: 4px 0 12px 0;
       text-align: center;
       font-weight: bold;
       flex-shrink: 0;
     }
 
-    /* 地図コンテナ：スマホ画面の横幅いっぱいに拡大 */
+    /* 地図コンテナ */
     .map-container {
       position: relative;
       display: block;
@@ -50,7 +60,8 @@
       height: auto;
       object-fit: contain;
     }
-    /* 天気カード：超スリム＆スタイリッシュな縦長デザイン */
+
+    /* 天気カード */
     .weather-card {
       position: absolute;
       transform: translate(-50%, -50%);
@@ -62,7 +73,20 @@
       border: 1px solid #dcdcdc;
       width: 36px;
       z-index: 10;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
+
+    .weather-card.clickable {
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+    .weather-card.clickable:hover {
+      transform: translate(-50%, -55%) scale(1.08);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border-color: #0284c7;
+    }
+
     .city-name {
       font-size: 0.6rem;
       font-weight: bold;
@@ -88,13 +112,46 @@
       line-height: 1;
       margin-top: 2px;
     }
+
+    /* 下部解説・リンクテキストボックス */
+    .forecast-text {
+      max-width: 500px;
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* ★リンクエリアのレイアウト調整 */
+    .link-group {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed #cbd5e1;
+    }
+    .link-line {
+      margin-bottom: 6px;
+    }
+    .forecast-text a {
+      color: #0284c7;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .update-time {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 12px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
 
-  <BR>
-  <FONT size="7" COLOR="WHITE">Kenta気象情報</FONT><BR>
-  <div class="header-title"> 全国の気象情報(9/13(日))</div>
+  <!-- ★白文字だったタイトルをハッキリ表示されるように変更 -->
+  <div class="app-title">Kenta気象情報</div>
+  <div class="header-title">全国の気象情報 (9/13(日))</div>
 
   <div class="map-container">
     <img class="japan-map" src="map.jpg" alt="日本地図">
@@ -102,14 +159,13 @@
   </div>
 
   <script>
-    // 縦長カードが重ならないよう、日本列島の傾きに沿って座標を再調整
     const weatherData = [
       { city: "札幌", icon: "🌤️", maxtemp: "26℃", mintemp: "17℃", x: 62, y: 18 },
       { city: "仙台", icon: "☁️", maxtemp: "24℃", mintemp: "20℃", x: 66, y: 53 },
       { city: "新潟", icon: "☁️", maxtemp: "30℃", mintemp: "21℃", x: 50, y: 40 },
       { city: "金沢", icon: "🌧️", maxtemp: "31℃", mintemp: "23℃", x: 40, y: 50 },
-      { city: "長野", icon: "☁️", maxtemp: "31℃", mintemp: "21℃", x: 45, y: 68 },
-      { city: "東京", icon: "☁️", maxtemp: "26℃", mintemp: "20℃", x: 57, y: 81 },
+      { city: "長野", icon: "☁️", maxtemp: "31℃", mintemp: "21℃", x: 45, y: 68, link: "nagano weather forecast.html" },
+      { city: "東京", icon: "☁️", maxtemp: "26℃", mintemp: "20℃", x: 57, y: 81, link: "kanto weather forecast.html" },
       { city: "名古屋", icon: "🌧️", maxtemp: "30℃", mintemp: "24℃", x: 47, y: 87 },
       { city: "大阪", icon: "🌧️", maxtemp: "32℃", mintemp: "25℃", x: 35, y: 70 },
       { city: "広島", icon: "🌧️", maxtemp: "33℃", mintemp: "25℃", x: 23, y: 65 },
@@ -121,8 +177,14 @@
     const mapContent = document.getElementById("map-content");
 
     weatherData.forEach(item => {
-      const card = document.createElement("div");
+      const card = document.createElement(item.link ? "a" : "div");
       card.className = "weather-card";
+
+      if (item.link) {
+        card.href = item.link;
+        card.classList.add("clickable");
+      }
+
       card.style.left = item.x + "%";
       card.style.top = item.y + "%";
 
@@ -135,11 +197,9 @@
 
       mapContent.appendChild(card);
     });
-    
   </script>
 
 </body>
-
 <BR>
 明日は北日本と沖縄を中心に晴れ間が見え、洗濯日和となりそうです。北日本では湿度も低くカラッとした秋晴れが期待できそうです。<BR>
 一方で西日本を中心に雨が降って、局地的には激しく降る恐れもあります。朝雨が降っていなくても折りたたみ傘があると安心です。<BR>
