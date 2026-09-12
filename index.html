@@ -46,6 +46,7 @@
       display: block;
       width: 100%;
       max-width: 500px;
+      height: 380px; /* ←★ ここで縦の大きさを自由に大きくできます（例: 380px〜450px） */
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
       overflow: hidden;
@@ -54,11 +55,12 @@
       margin-bottom: 16px;
     }
     
+    /* ★ 画像：コンテナの縦横いっぱいに広がるように設定 */
     .japan-map {
       display: block;
       width: 100%;
-      height: auto;
-      object-fit: contain;
+      height: 100%;
+      object-fit: cover; /* 枠いっぱいに収める（歪ませず綺麗に広げる場合は cover または fill） */
     }
 
     /* 天気カード */
