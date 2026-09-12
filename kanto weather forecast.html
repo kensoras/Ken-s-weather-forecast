@@ -1,50 +1,139 @@
-<HTML>
-<BODY>
-    <TABLE border="5">
-    <TR bgcolor="royalblue" color="black">
-	<TH></TH>
-	<TH>東京</TH>
-        <TH>神奈川</TH>
-    </TR>
-    <TR>
-	<TD>天気</TD>
-	<TD>
-           午前中：☁️<BR>
-           午後　：☁️<BR>
-           夜　　：☁️
-        </TD>
-	<TD>
-           午前中：☁️<BR>
-           午後　：☁️<BR>
-           夜　　：☁️
-        </TD>
-    <TR/>
-    <TR>
-	<TD>予想最高気温</TD>
-	<TD>
-           27℃
-        </TD>
-	<TD>
-           28℃
-        </TD>
-    <TR/>
-    <TR>
-        <TD>降水確率</TD>
-        <TD>
-           30％
-        </TD>
-        <TD>
-           30％
-        </TD>
-    </TR>
-    </TABLE>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>首都圏の詳しい気象情報</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #e0f2fe;
+      color: #1e293b;
+      padding: 20px 15px;
+      font-size: 1.15rem; /* 全体の文字サイズを大きめに */
+      line-height: 1.8;   /* 行間を広げて読みやすく */
+    }
 
-<BR>今日は一日を通して曇り空となりそうです。一時的に晴れ間があったり、にわか雨があったりと変わりやすい天気です。<BR>
-念のため折りたたみ傘があると安心です！おそらく午後は晴れやすいのではないかと思います！
-<BR>最高気温は今日よりもさらに上がって26℃前後。日中は半袖で過ごせる陽気となりそうです。
-</BODY>
+    /* 表（テーブル）全体のスタイル */
+    .weather-table {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto 20px auto;
+      border-collapse: collapse;
+      background-color: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      font-size: 1.1rem; /* テーブル内の文字を大きく */
+    }
 
-<BR>
-<A HREF="index.html">戻る</A>
-</HTML>
+    /* ヘッダー（見出し） */
+    .weather-table th {
+      background-color: #4169e1; /* royalblue */
+      color: #ffffff;
+      padding: 12px 8px;
+      font-size: 1.25rem;
+      text-align: center;
+    }
 
+    /* セルのスタイル */
+    .weather-table td {
+      border: 1px solid #cbd5e1;
+      padding: 12px 10px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    /* 左側の項目名セル */
+    .weather-table td:first-child {
+      font-weight: bold;
+      background-color: #f8fafc;
+      width: 25%;
+    }
+
+    /* 解説文章部分 */
+    .description {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      margin-bottom: 20px;
+    }
+
+    /* 戻るボタン */
+    .back-btn-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .back-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      background-color: #0284c7;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border-radius: 25px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .back-btn:hover {
+      background-color: #0369a1;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <table class="weather-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>東京</th>
+        <th>神奈川</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>天気</td>
+        <td>
+          午前中：☁️<br>
+          午後 ：☁️<br>
+          夜  ：☁️
+        </td>
+        <td>
+          午前中：☁️<br>
+          午後 ：☁️<br>
+          夜  ：☁️
+        </td>
+      </tr>
+      <tr>
+        <td>予想最高気温</td>
+        <td>27℃</td>
+        <td>28℃</td>
+      </tr>
+      <tr>
+        <td>降水確率</td>
+        <td>30％</td>
+        <td>30％</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="description">
+    今日は一日を通して曇り空となりそうです。一時的に晴れ間があったり、にわか雨があったりと変わりやすい天気です。<br>
+    念のため折りたたみ傘があると安心です！おそらく午後は晴れやすいのではないかと思います！<br>
+    最高気温は今日よりもさらに上がって26℃前後。日中は半袖で過ごせる陽気となりそうです。
+  </div>
+
+  <div class="back-btn-container">
+    <a href="index.html" class="back-btn">← 戻る</a>
+  </div>
+
+</body>
+</html>
