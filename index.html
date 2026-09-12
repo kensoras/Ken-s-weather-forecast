@@ -33,13 +33,15 @@
     /* 地図コンテナ：スマホ画面の横幅いっぱいに拡大 */
     .map-container {
       position: relative;
-      display: inline-block;
+      display: block;
       width: 100%;
       max-width: 500px;
       border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
       overflow: hidden;
-      border: 2px solid #334155;
+      border: 2px solid #bae6fd;
+      background-color: #ffffff;
+      margin-bottom: 16px;
     }
     
     .japan-map {
@@ -48,7 +50,6 @@
       height: auto;
       object-fit: contain;
     }
-
     /* 天気カード：超スリム＆スタイリッシュな縦長デザイン */
     .weather-card {
       position: absolute;
