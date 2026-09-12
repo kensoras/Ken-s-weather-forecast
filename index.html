@@ -73,10 +73,17 @@
       font-size: 1rem;
       line-height: 1;
     }
-    .temp {
+    .maxtemp {
       font-size: 0.55rem;
       font-weight: bold;
       color: #e53e3e;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .mintemp {
+      font-size: 0.55rem;
+      font-weight: bold;
+      color: BLUE;
       line-height: 1;
       margin-top: 2px;
     }
@@ -95,18 +102,18 @@
   <script>
     // 縦長カードが重ならないよう、日本列島の傾きに沿って座標を再調整
     const weatherData = [
-      { city: "札幌", icon: "☁️", temp: "22℃", x: 62, y: 18 },
-      { city: "仙台", icon: "🌤️", temp: "26℃", x: 66, y: 53 },
-      { city: "新潟", icon: "☔", temp: "25℃", x: 50, y: 40 },
-      { city: "金沢", icon: "☔", temp: "25℃", x: 40, y: 50 },
-      { city: "長野", icon: "☀️", temp: "31℃", x: 45, y: 65 },
-      { city: "東京", icon: "☀️", temp: "31℃", x: 57, y: 81 },
-      { city: "名古屋", icon: "☀️", temp: "32℃", x: 47, y: 83 },
-      { city: "大阪", icon: "🌤️", temp: "30℃", x: 35, y: 70 },
-      { city: "広島", icon: "☀️", temp: "31℃", x: 23, y: 65 },
-      { city: "福岡", icon: "🌧️", temp: "28℃", x: 10, y: 80 },
-      { city: "鹿児島", icon: "⚡", temp: "29℃", x: 30, y: 90 },
-      { city: "那覇", icon: "☀️", temp: "33℃", x: 85, y: 86 }
+      { city: "札幌", icon: "☁️", maxtemp: "22℃", mintemp: "10℃", x: 62, y: 18 },
+      { city: "仙台", icon: "🌤️", maxtemp: "26℃", mintemp: "10℃", x: 66, y: 53 },
+      { city: "新潟", icon: "☔", maxtemp: "25℃", mintemp: "10℃", x: 50, y: 40 },
+      { city: "金沢", icon: "☔", maxtemp: "25℃", mintemp: "10℃", x: 40, y: 50 },
+      { city: "長野", icon: "☀️", maxtemp: "31℃", mintemp: "10℃", x: 45, y: 65 },
+      { city: "東京", icon: "☀️", maxtemp: "31℃", mintemp: "10℃", x: 57, y: 81 },
+      { city: "名古屋", icon: "☀️", maxtemp: "32℃", mintemp: "10℃", x: 47, y: 83 },
+      { city: "大阪", icon: "🌤️", maxtemp: "30℃", mintemp: "10℃", x: 35, y: 70 },
+      { city: "広島", icon: "☀️", maxtemp: "31℃", mintemp: "10℃", x: 23, y: 65 },
+      { city: "福岡", icon: "🌧️", maxtemp: "28℃", mintemp: "10℃", x: 10, y: 80 },
+      { city: "鹿児島", icon: "⚡", maxtemp: "29℃", mintemp: "10℃", x: 30, y: 90 },
+      { city: "那覇", icon: "☀️", maxtemp: "33℃", mintemp: "10℃", x: 85, y: 86 }
     ];
 
     const mapContent = document.getElementById("map-content");
