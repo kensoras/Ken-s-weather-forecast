@@ -1,0 +1,241 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>週間気象情報</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #e0f2fe;
+      color: #1e293b;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* タイトル */
+    .app-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #0284c7;
+      text-align: center;
+      margin-top: 4px;
+    }
+    .header-title {
+      font-size: 1.2rem;
+      color: #0f172a;
+      margin: 4px 0 16px 0;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    /* 週間予報リストカード */
+    .weekly-container {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      padding: 12px;
+      border: 2px solid #bae6fd;
+    }
+
+    /* 1日ごとの行デザイン */
+    .day-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 8px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .day-row:last-child {
+      border-bottom: none;
+    }
+
+    /* 日付・曜日のスタイル */
+    .date-info {
+      font-size: 1.05rem;
+      font-weight: bold;
+      width: 110px;
+    }
+
+    /* ★ 曜日の色指定 ★ */
+    .weekday {
+      color: #16a34a; /* 平日：緑 */
+    }
+    .saturday {
+      color: #2563eb; /* 土曜日：青 */
+    }
+    .holiday, .sunday {
+      color: #dc2626; /* 日曜・祝日：赤 */
+    }
+
+    /* 天気マーク＆名称 */
+    .weather-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      justify-content: center;
+    }
+    .weather-icon {
+      font-size: 1.4rem;
+    }
+    .weather-text {
+      font-size: 0.85rem;
+      color: #475569;
+      font-weight: bold;
+    }
+
+    /* 気温・降水確率 */
+    .temp-info {
+      text-align: right;
+      width: 110px;
+    }
+    .temp-line {
+      font-size: 0.95rem;
+      font-weight: bold;
+    }
+    .maxtemp {
+      color: #e53e3e; /* 最高気温：赤 */
+    }
+    .mintemp {
+      color: #2563eb; /* 最低気温：青 */
+    }
+    .rain-prob {
+      font-size: 0.75rem;
+      color: #0284c7;
+      font-weight: bold;
+      margin-top: 2px;
+    }
+
+    /* 更新日時 */
+    .update-time {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    /* 戻るボタン */
+    .back-btn-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .back-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      background-color: #0284c7;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 25px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .back-btn:hover {
+      background-color: #0369a1;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-title">Kenta気象情報</div>
+  <div class="header-title">週間気象情報（首都圏）</div>
+
+  <div class="weekly-container">
+
+    <div class="day-row">
+      <div class="date-info saturday">9/19(土)</div>
+      <div class="weather-info">
+        <span class="weather-icon">☁️/🌧️</span>
+      </div>
+      <div class="temp-info">
+        <div class="temp-line"><span class="maxtemp">26℃</span> / <span class="mintemp">19℃</span></div>
+        <div class="rain-prob">40％</div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="date-info sunday">9/20(日)</div>
+      <div class="weather-info">
+        <span class="weather-icon">☔</span>
+      </div>
+      <div class="temp-info">
+        <div class="temp-line"><span class="maxtemp">23℃</span> / <span class="mintemp">21℃</span></div>
+        <div class="rain-prob">100％</div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="date-info holiday">9/21(月・祝)</div>
+      <div class="weather-info">
+        <span class="weather-icon">☔→☀️</span>
+      </div>
+      <div class="temp-info">
+        <div class="temp-line"><span class="maxtemp">32℃</span> / <span class="mintemp">23℃</span></div>
+        <div class="rain-prob">90％</div>
+      </div>
+    </div>
+
+        <div class="day-row">
+      <div class="date-info holiday">9/22(火・祝)</div>
+      <div class="weather-info">
+        <span class="weather-icon">☀️</span>
+      </div>
+      <div class="temp-info">
+        <div class="temp-line"><span class="maxtemp">29℃</span> / <span class="mintemp">21℃</span></div>
+        <div class="rain-prob">10％</div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="date-info holiday">9/23(水・祝)</div>
+      <div class="weather-info">
+        <span class="weather-icon">🌤️</span>
+      </div>
+      <div class="temp-info">
+        <div class="temp-line"><span class="maxtemp">27℃</span> / <span class="mintemp">20℃</span></div>
+        <div class="rain-prob">10％</div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="date-info weekday">9/24(木)</div>
+      <div class="weather-info">
+        <span class="weather-icon">🌤️</span>
+      </div>
+      <div class="temp-info">
+        <div class="temp-line"><span class="maxtemp">28℃</span> / <span class="mintemp">20℃</span></div>
+        <div class="rain-prob">10％</div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="date-info weekday">9/25(金)</div>
+      <div class="weather-info">
+        <span class="weather-icon">🌤️</span>
+      </div>
+      <div class="temp-info">
+        <div class="temp-line"><span class="maxtemp">28℃</span> / <span class="mintemp">21℃</span></div>
+        <div class="rain-prob">30％</div>
+      </div>
+    </div>
+
+    <div class="update-time">9/18(金) 12:00 更新</div>
+  </div>
+
+  <div class="back-btn-container">
+    <a href="kanto weather forecast.html" class="back-btn">← トップへ戻る</a>
+  </div>
+
+</body>
+</html>
+
