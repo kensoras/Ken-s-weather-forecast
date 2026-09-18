@@ -153,7 +153,7 @@
 
   <!-- ★白文字だったタイトルをハッキリ表示されるように変更 -->
   <div class="app-title">Kenta気象情報</div>
-  <div class="header-title">全国の気象情報 (9/18(金))</div>
+  <div class="header-title">全国の気象情報(<FONT color="BLUE">9/19(土)</FONT>)</div>
 
   <div class="map-container">
     <img class="japan-map" src="map.jpg" alt="日本地図">
@@ -162,18 +162,18 @@
 
   <script>
     const weatherData = [
-      { city: "札幌", icon: "☀️", maxtemp: "26℃", mintemp: "15℃", x: 62, y: 18 },
-      { city: "仙台", icon: "☁️", maxtemp: "23℃", mintemp: "17℃", x: 66, y: 53 },
-      { city: "新潟", icon: "🌤️", maxtemp: "30℃", mintemp: "18℃", x: 50, y: 40 },
-      { city: "金沢", icon: "⛅", maxtemp: "30℃", mintemp: "22℃", x: 40, y: 50 },
-      { city: "長野", icon: "⛅", maxtemp: "28℃", mintemp: "18℃", x: 45, y: 68},
-      { city: "東京", icon: "☁️", maxtemp: "23℃", mintemp: "19℃", x: 57, y: 81},
-      { city: "名古屋", icon: "☁️", maxtemp: "30℃", mintemp: "23℃", x: 45, y: 85 },
-      { city: "大阪", icon: "☁️", maxtemp: "29℃", mintemp: "23℃", x: 35, y: 70 },
-      { city: "広島", icon: "🌧️", maxtemp: "29℃", mintemp: "23℃", x: 23, y: 65 },
-      { city: "福岡", icon: "🌧️", maxtemp: "24℃", mintemp: "23℃", x: 10, y: 80 },
-      { city: "鹿児島", icon: "☁️", maxtemp: "31℃", mintemp: "26℃", x: 20, y: 90 },
-      { city: "那覇", icon: "🌤️", maxtemp: "33℃", mintemp: "26℃", x: 85, y: 86 }
+      { city: "札幌", icon: "⛅", maxtemp: "24℃", mintemp: "14℃", x: 62, y: 18 },
+      { city: "仙台", icon: "☁️/🌧️", maxtemp: "23℃", mintemp: "19℃", x: 66, y: 53 },
+      { city: "新潟", icon: "☁️", maxtemp: "28℃", mintemp: "20℃", x: 50, y: 40 },
+      { city: "金沢", icon: "🌧️", maxtemp: "30℃", mintemp: "22℃", x: 40, y: 50 },
+      { city: "長野", icon: "☁️", maxtemp: "27℃", mintemp: "20℃", x: 45, y: 68},
+      { city: "東京", icon: "☁️/🌧️", maxtemp: "26℃", mintemp: "19℃", x: 57, y: 81},
+      { city: "名古屋", icon: "⛅", maxtemp: "31℃", mintemp: "22℃", x: 45, y: 85 },
+      { city: "大阪", icon: "⛅", maxtemp: "31℃", mintemp: "23℃", x: 35, y: 70 },
+      { city: "広島", icon: "🌧️", maxtemp: "30℃", mintemp: "22℃", x: 23, y: 65 },
+      { city: "福岡", icon: "🌧️", maxtemp: "27℃", mintemp: "23℃", x: 10, y: 80 },
+      { city: "鹿児島", icon: "⛅", maxtemp: "32℃", mintemp: "26℃", x: 20, y: 90 },
+      { city: "那覇", icon: "☀️", maxtemp: "31℃", mintemp: "26℃", x: 85, y: 86 }
     ];
 
     const mapContent = document.getElementById("map-content");
@@ -203,8 +203,9 @@
 
 </body>
 <BR>
-明日は日本海側の地域を中心に晴れる所が多くなりそうです。その他、太平洋側の地域を中心に雲が多くなりそうです。<BR>
-太平洋側の地域を中心に所々でにわか雨の可能性がありますので、心配な方は折りたたみ傘をお持ちください。<BR>
+明日は全国的に曇りや雨のところが多くなりそうです。お出かけの際に雨が降っていなくても、折りたたみ傘をお持ちください。<BR>
+ただ、関東～近畿地方にかけては一時的に晴れ間の見えるところもありそうです。<BR>
+台風25号の接近に伴い、太平洋側の波の高さはうねりを伴いそうです。大型連休で海に行かれる方、十分ご注意ください。
 <br>
 
 詳しい気象情報：<A HREF="kanto weather forecast.html">首都圏</A>　<A HREF="nagano weather forecast.html">長野</A>
