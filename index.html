@@ -153,7 +153,7 @@
 
   <!-- ★白文字だったタイトルをハッキリ表示されるように変更 -->
   <div class="app-title">Kenta気象情報</div>
-  <div class="header-title">全国の気象情報(<FONT color="RED">9/21(月)敬老の日</FONT>)</div>
+  <div class="header-title">全国の気象情報(<FONT color="RED">9/22(火)国民の祝日</FONT>)</div>
 
   <div class="map-container">
     <img class="japan-map" src="map.jpg" alt="日本地図">
@@ -162,18 +162,18 @@
 
   <script>
     const weatherData = [
-      { city: "札幌", icon: "⛅", maxtemp: "26℃", mintemp: "18℃", x: 62, y: 18 },
-      { city: "仙台", icon: "☔", maxtemp: "23℃", mintemp: "20℃", x: 66, y: 53 },
-      { city: "新潟", icon: "☔", maxtemp: "26℃", mintemp: "22℃", x: 50, y: 40 },
-      { city: "金沢", icon: "🌧️", maxtemp: "26℃", mintemp: "23℃", x: 40, y: 50 },
-      { city: "長野", icon: "☔", maxtemp: "25℃", mintemp: "21℃", x: 45, y: 68},
-      { city: "東京", icon: "☔", maxtemp: "24℃", mintemp: "21℃", x: 57, y: 81},
-      { city: "名古屋", icon: "🌧️", maxtemp: "32℃", mintemp: "24℃", x: 45, y: 85 },
-      { city: "大阪", icon: "☁️", maxtemp: "29℃", mintemp: "24℃", x: 35, y: 70 },
-      { city: "広島", icon: "🌤️", maxtemp: "29℃", mintemp: "24℃", x: 23, y: 65 },
-      { city: "福岡", icon: "🌤️", maxtemp: "27℃", mintemp: "23℃", x: 10, y: 80 },
+      { city: "札幌", icon: "🌤️", maxtemp: "22℃", mintemp: "18℃", x: 62, y: 18 },
+      { city: "仙台", icon: "☔↓☀️", maxtemp: "29℃", mintemp: "21℃", x: 66, y: 53 },
+      { city: "新潟", icon: "🌧️", maxtemp: "26℃", mintemp: "21℃", x: 50, y: 40 },
+      { city: "金沢", icon: "⛅", maxtemp: "27℃", mintemp: "21℃", x: 40, y: 50 },
+      { city: "長野", icon: "🌧️", maxtemp: "26℃", mintemp: "21℃", x: 45, y: 68},
+      { city: "東京", icon: "🌧️↓☀️", maxtemp: "30℃", mintemp: "24℃", x: 57, y: 81},
+      { city: "名古屋", icon: "☀️", maxtemp: "33℃", mintemp: "22℃", x: 45, y: 85 },
+      { city: "大阪", icon: "☀️", maxtemp: "30℃", mintemp: "24℃", x: 35, y: 70 },
+      { city: "広島", icon: "☀️", maxtemp: "31℃", mintemp: "21℃", x: 23, y: 65 },
+      { city: "福岡", icon: "☀️", maxtemp: "28℃", mintemp: "22℃", x: 10, y: 80 },
       { city: "鹿児島", icon: "☀️", maxtemp: "33℃", mintemp: "22℃", x: 20, y: 90 },
-      { city: "那覇", icon: "☀️", maxtemp: "30℃", mintemp: "26℃", x: 85, y: 86 }
+      { city: "那覇", icon: "☀️", maxtemp: "31℃", mintemp: "25℃", x: 85, y: 86 }
     ];
 
     const mapContent = document.getElementById("map-content");
@@ -203,15 +203,17 @@
 
 </body>
 <BR>
-明日は台風25号が最接近する見込みです。そのため、東海や関東では月曜一日中、東北地方では月曜夕方～火曜朝にかけて荒れた天気となる恐れがあります。<BR>
-今日だけでも雨量が多くなっていますので、明日も大雨に警戒してください。また明日は風も次第に強まりますので、暴風・大雨・高波に厳重に警戒してください。<BR>
-一方で、西日本を中心に晴れて30℃以上の真夏日となるところもありそうです。こちらは熱中症対策しっかりとなさってください。<BR>
+関東や東北を中心に明け方まで台風25号の影響が残る見込みです。関東地方を中心に明日は強風と高波に、東北地方では大雨、強風、高波に厳重に警戒してください。<BR>
+ただ広い範囲で見れば全国的に晴れる所が多くなりそうです。関東の雨も未明まで、東北地方も昼過ぎには日差しが届く見込みです。<BR>
+台風一過でスッキリと晴れるでしょう。気温も全国的に高く、東北地方～西日本にかけて広い範囲で30℃以上の真夏日。久しぶりに暑くなりますので、熱中症対策しっかりとなさってください！<BR>
+シルバーウイークでお出かけされる方も、なるべく涼しい場所でお過ごしください。<BR>
+<FONT color="RED">明日から帰省ラッシュが始まると予想されます。新幹線、道路の混雑状況、十分ご注意ください。<BR>
 <br>
 
 詳しい気象情報：<A HREF="kanto weather forecast.html">首都圏</A>　<A HREF="nagano weather forecast.html">長野</A>
 重要な気象事項はこちらで表示：<A HREF="emergency weather forecast.html">こちら</A>
 最新の台風情報：<A HREF="taihu information.html">台風情報</A>
 
-<BR><BR>9/20(日)16:30更新(台風情報など更新の可能性あり)
+<BR><BR>9/21(月)12:00更新(台風情報など更新の可能性あり)
 </html>
 
