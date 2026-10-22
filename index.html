@@ -153,7 +153,7 @@
 
   <!-- ★白文字だったタイトルをハッキリ表示されるように変更 -->
   <div class="app-title">Kenta気象情報</div>
-  <div class="header-title">全国の気象情報10/22(木)</div>
+  <div class="header-title">全国の気象情報10/23(金)</div>
 
   <div class="map-container">
     <img class="japan-map" src="map.jpg" alt="日本地図">
@@ -162,18 +162,18 @@
 
   <script>
     const weatherData = [
-      { city: "札幌", icon: "🌧️", maxtemp: "10℃", mintemp: "5℃", x: 62, y: 18 },
-      { city: "仙台", icon: "☀️", maxtemp: "19℃", mintemp: "14℃", x: 66, y: 53 },
-      { city: "新潟", icon: "🌧️", maxtemp: "19℃", mintemp: "14℃", x: 50, y: 40 },
-      { city: "金沢", icon: "☁️", maxtemp: "19℃", mintemp: "16℃", x: 40, y: 50 },
-      { city: "長野", icon: "⛅", maxtemp: "16℃", mintemp: "13℃", x: 45, y: 68},
-      { city: "東京", icon: "🌤️", maxtemp: "25℃", mintemp: "19℃", x: 57, y: 81},
-      { city: "名古屋", icon: "🌤️", maxtemp: "25℃", mintemp: "18℃", x: 45, y: 85 },
-      { city: "大阪", icon: "☀️", maxtemp: "25℃", mintemp: "17℃", x: 35, y: 70 },
-      { city: "広島", icon: "☀️", maxtemp: "24℃", mintemp: "15℃", x: 23, y: 65 },
-      { city: "福岡", icon: "☀️", maxtemp: "24℃", mintemp: "16℃", x: 10, y: 80 },
-      { city: "鹿児島", icon: "☀️", maxtemp: "27℃", mintemp: "18℃", x: 20, y: 90 },
-      { city: "那覇", icon: "🌧️", maxtemp: "28℃", mintemp: "25℃", x: 85, y: 86 }
+      { city: "札幌", icon: "🌤️", maxtemp: "18℃", mintemp: "6℃", x: 62, y: 18 },
+      { city: "仙台", icon: "☀️", maxtemp: "17℃", mintemp: "8℃", x: 66, y: 53 },
+      { city: "新潟", icon: "☀️", maxtemp: "19℃", mintemp: "9℃", x: 50, y: 40 },
+      { city: "金沢", icon: "☀️", maxtemp: "22℃", mintemp: "11℃", x: 40, y: 50 },
+      { city: "長野", icon: "☀️", maxtemp: "22℃", mintemp: "6℃", x: 45, y: 68},
+      { city: "東京", icon: "☀️", maxtemp: "22℃", mintemp: "14℃", x: 57, y: 81},
+      { city: "名古屋", icon: "⛅", maxtemp: "24℃", mintemp: "15℃", x: 45, y: 85 },
+      { city: "大阪", icon: "⛅", maxtemp: "25℃", mintemp: "14℃", x: 35, y: 70 },
+      { city: "広島", icon: "⛅↓🌧️", maxtemp: "23℃", mintemp: "14℃", x: 23, y: 65 },
+      { city: "福岡", icon: "⛅↓🌧️", maxtemp: "23℃", mintemp: "17℃", x: 10, y: 80 },
+      { city: "鹿児島", icon: "🌧️", maxtemp: "24℃", mintemp: "21℃", x: 20, y: 90 },
+      { city: "那覇", icon: "🌧️", maxtemp: "30℃", mintemp: "26℃", x: 85, y: 86 }
     ];
 
     const mapContent = document.getElementById("map-content");
@@ -203,15 +203,15 @@
 
 </body>
 <BR>
-明日は北日本を中心に雲が多く、雨や雪の降る所が多くなりそうです。北海道の山沿いでは雪が積もるでしょう。<BR>
-その他の地域は広く晴れる所が多くなりそうです。<BR>
-全国的に気温は今日よりも下がり、関東から西では25℃前後なものの、北日本では15℃前後と日中でもひんやりとしそうです。<BR>
+明日は全国的に晴れる所が多く、さわやかな秋晴れとなりそうです。<BR>
+ただ、西日本は次第に台風が近づくため、夜は雨の降る可能性があります。<BR>
+全国的に気温は今日よりも下がり、関東から西では25℃前後、北日本では20℃以下でしょう。北日本を中心に朝晩と日中との寒暖差が大きくなりそうです。<BR>
 <br>
 
 詳しい気象情報：<A HREF="kanto weather forecast.html">首都圏</A>　<A HREF="nagano weather forecast.html">長野</A>
 重要な気象事項はこちらで表示：<A HREF="emergency weather forecast.html">こちら</A><BR>
 
-<BR><BR>10/22(木)0:30更新<BR>
+<BR><BR>10/22(木)15:30更新<BR>
 日によって更新時間は違いますが、23時までには更新するつもりです！<BR>
 </html>
 
