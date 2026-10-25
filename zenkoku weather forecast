@@ -1,0 +1,209 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全国お天気マップ</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      min-height: 100vh;
+      overflow-y: auto;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #e0f2fe; /* 明るい水色背景 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 15px 10px;
+      color: #1e293b;
+    }
+
+    /* ★タイトル部分（白い文字から濃い青色に変更して見やすく） */
+    .app-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #0284c7; /* 見やすい鮮やかな青 */
+      text-align: center;
+      margin-top: 4px;
+    }
+    .header-title {
+      font-size: 1.2rem;
+      color: #0f172a;
+      margin: 4px 0 12px 0;
+      text-align: center;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* 地図コンテナ */
+    .map-container {
+      position: relative;
+      display: block;
+      width: 100%;
+      max-width: 500px;
+      height: 400px; /* ←★ ここで縦の大きさを自由に大きくできます（例: 380px〜450px） */
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      border: 2px solid #bae6fd;
+      background-color: #ffffff;
+      margin-bottom: 16px;
+    }
+    
+    /* ★ 画像：コンテナの縦横いっぱいに広がるように設定 */
+    .japan-map {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* 枠いっぱいに収める（歪ませず綺麗に広げる場合は cover または fill） */
+    }
+
+    /* 天気カード */
+    .weather-card {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 4px 2px;
+      border-radius: 6px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      border: 1px solid #dcdcdc;
+      width: 36px;
+      z-index: 10;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .weather-card.clickable {
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+    .weather-card.clickable:hover {
+      transform: translate(-50%, -55%) scale(1.08);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border-color: #0284c7;
+    }
+
+    .city-name {
+      font-size: 0.6rem;
+      font-weight: bold;
+      color: #222;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    .weather-icon {
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .maxtemp {
+      font-size: 0.55rem;
+      font-weight: bold;
+      color: #e53e3e;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .mintemp {
+      font-size: 0.55rem;
+      font-weight: bold;
+      color: #2563eb;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    /* 下部解説・リンクテキストボックス */
+    .forecast-text {
+      max-width: 500px;
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* ★リンクエリアのレイアウト調整 */
+    .link-group {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed #cbd5e1;
+    }
+    .link-line {
+      margin-bottom: 6px;
+    }
+    .forecast-text a {
+      color: #0284c7;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .update-time {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 12px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ★白文字だったタイトルをハッキリ表示されるように変更 -->
+  <div class="app-title">Kenta気象情報</div>
+  <div class="header-title">全国の気象情報10/26(月)</div>
+
+  <div class="map-container">
+    <img class="japan-map" src="map.jpg" alt="日本地図">
+    <div id="map-content"></div>
+  </div>
+
+  <script>
+    const weatherData = [
+      { city: "札幌", icon: "🌤️", maxtemp: "14℃", mintemp: "7℃", x: 62, y: 18 },
+      { city: "仙台", icon: "🌤️", maxtemp: "17℃", mintemp: "12℃", x: 66, y: 53 },
+      { city: "新潟", icon: "☁️", maxtemp: "19℃", mintemp: "15℃", x: 50, y: 40 },
+      { city: "金沢", icon: "🌧️", maxtemp: "19℃", mintemp: "17℃", x: 40, y: 50 },
+      { city: "長野", icon: "🌧️", maxtemp: "17℃", mintemp: "14℃", x: 45, y: 68},
+      { city: "東京", icon: "☔", maxtemp: "20℃", mintemp: "18℃", x: 57, y: 81},
+      { city: "名古屋", icon: "☔", maxtemp: "20℃", mintemp: "19℃", x: 45, y: 85 },
+      { city: "大阪", icon: "☔", maxtemp: "21℃", mintemp: "19℃", x: 35, y: 70 },
+      { city: "広島", icon: "🌧️", maxtemp: "21℃", mintemp: "20℃", x: 23, y: 65 },
+      { city: "福岡", icon: "☔", maxtemp: "23℃", mintemp: "22℃", x: 10, y: 80 },
+      { city: "鹿児島", icon: "🌧️", maxtemp: "29℃", mintemp: "26℃", x: 20, y: 90 },
+      { city: "那覇", icon: "⛅", maxtemp: "29℃", mintemp: "26℃", x: 85, y: 86 }
+    ];
+
+    const mapContent = document.getElementById("map-content");
+
+    weatherData.forEach(item => {
+      const card = document.createElement(item.link ? "a" : "div");
+      card.className = "weather-card";
+
+      if (item.link) {
+        card.href = item.link;
+        card.classList.add("clickable");
+      }
+
+      card.style.left = item.x + "%";
+      card.style.top = item.y + "%";
+
+      card.innerHTML = `
+        <div class="city-name">${item.city}</div>
+        <div class="weather-icon">${item.icon}</div>
+        <div class="maxtemp">${item.maxtemp}</div>
+        <div class="mintemp">${item.mintemp}</div>
+      `;
+
+      mapContent.appendChild(card);
+    });
+  </script>
+
+</body>
+<BR>
+明日は全国的に雨の降る所が多くなりそうです。台風30号と前線の影響で、関東から近畿地方を中心に雨量がかなり多くなる恐れがあります。<BR>
+大きめの傘があると良いでしょう。<BR>
+明日は今日よりも気温は下がる傾向ですが、湿度が高いため過ごしやすいか、少し蒸し暑くなると思います。<BR>
+<br>
